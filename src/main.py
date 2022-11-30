@@ -1,7 +1,7 @@
 import pygame
 import os
 from iaButton import IaButton
-
+import pygame_widgets
 
 #
 #
@@ -34,7 +34,10 @@ def config_screen():
     rect.center = width // 2, (height // 2) - 100
     scr.blit(image, rect)
 
-    buttons = [IaButton(scr, 'Grafico geral', 0), IaButton(scr, 'Grafico por area', 1)]
+    buttons = [
+                IaButton(scr, 'Grafico geral', 0),
+                IaButton(scr, 'Grafico por area', 1)
+              ]
 
     pygame.display.flip()
 
@@ -51,13 +54,16 @@ def game_loop():
     running = True
     # game loop
     while running:
-        for event in py_game.event.get():
-            if event.type == py_game.QUIT:
+        events = py_game.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                pygame.quit()
                 running = False
+                quit()
 
             # buttons event listeners
-            buttons[0].button.listen(event)
-            buttons[1].button.listen(event)
+            pygame_widgets.update(event)
+            pygame.display.update()
 
 
 #
