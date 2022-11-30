@@ -1,5 +1,6 @@
 import pygame_widgets
 from pygame_widgets.button import Button
+from graphGeneral import BrazilGraph
 
 
 class IaButton:
@@ -30,17 +31,20 @@ class IaButton:
         def search_choice(self):
             def graph_general():
                 print("graph general")
+                BrazilGraph()
 
             def graph_per_area():
                 print("graph per area")
 
             # dictionary with methods related to buttons
-            options = {
+            dict = {
                 0: graph_general,
                 1: graph_per_area,
             }
 
-            options.get(self.pos)()
+            dict.get(self.pos)()
 
         # draw buttons on screen
-        self.button.draw()
+        #self.button.draw()
+
+
